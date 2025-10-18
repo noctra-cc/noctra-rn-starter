@@ -6,7 +6,7 @@ export default function Index() {
   const { signOut } = useAuth();
 
   return (
-    <View className="flex-1 items-center justify-center bg-white">
+    <View className="flex-1 justify-center items-center bg-white dark:bg-black">
       <Text className="text-gray-700 mb-6 text-base">
         Edit <Text className="font-semibold">app/index.tsx</Text> to edit this screen.
       </Text>
