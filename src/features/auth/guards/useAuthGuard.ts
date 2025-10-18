@@ -1,38 +1,18 @@
-import { supabase } from '@/src/core/lib/supabase'
-import { router } from 'expo-router'
-import { useEffect, useState } from 'react'
+import { useEffect } from "react";
+import { useAuthStore } from "../store/useAuthStore";
 
 export function useAuthGuard() {
-  const [loading, setLoading] = useState(true)
-  const [session, setSession] = useState<any>(null)
+  const { session, loading, initialize } = useAuthStore();
 
   useEffect(() => {
-    const checkSession = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession()
+    initialize(); // ✅ starts Supabase session check and listener
+  }, []);
 
-      setSession(session)
-      setLoading(false)
-
-      if (!session) {
-        router.replace('/(auth)/welcome')
-      }
+  useEffect(() => {
+    if (!loading && !session) {
+      // router.replace("/(auth)/welcome"); // redirect when logged out
     }
+  }, [loading, session]);
 
-    checkSession()
-
-    const { data: subscription } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-      if (!session) {
-        router.replace('/(auth)/welcome')
-      }
-    })
-
-    return () => {
-      subscription.subscription.unsubscribe()
-    }
-  }, [])
-
-  return { loading, session }
+  return { session, loading };
 }
