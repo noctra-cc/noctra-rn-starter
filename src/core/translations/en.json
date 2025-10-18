@@ -1,0 +1,27 @@
+{
+  "brand": {
+    "name": "My App",
+    "slogan": "Simplify your day"
+  },
+  "auth": {
+    "login": "Sign In",
+    "signOut": "Sign Out",
+    "signup": "Create Account",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Continue",
+    "signInError": "Could not sign in.",
+    "accountCreated": "Account created",
+    "checkEmailToConfirm": "Check your email to confirm your account.",
+    "emailAndPasswordError": "Please enter your email and password.",
+    "noAccount": "Don’t have an account?",
+    "alreadyHaveAccount": "Already have an account?",
+    "signUpError": "Could not create account."
+  },
+  "general": {
+    "error": "Error"
+  },
+  "navigation": {
+    "home": "Home"
+  }
+}

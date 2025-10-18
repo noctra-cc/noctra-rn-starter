@@ -1,0 +1,27 @@
+{
+  "brand": {
+    "name": "My App",
+    "slogan": "Simplifica tu día"
+  },
+  "auth": {
+    "login": "Iniciar sesión",
+    "signOut": "Cerrar sesión",
+    "signup": "Crear cuenta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Continuar",
+    "signInError": "No se pudo iniciar sesión.",
+    "accountCreated": "Cuenta creada",
+    "checkEmailToConfirm": "Revisa tu correo para confirmar tu cuenta.",
+    "emailAndPasswordError": "Por favor ingresa tu correo y contraseña.",
+    "noAccount": "¿No tienes cuenta?",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "signUpError": "No se pudo crear la cuenta."
+  },
+  "general": {
+    "error": "Error"
+  },
+  "navigation": {
+    "home": "Inicio"
+  }
+}
