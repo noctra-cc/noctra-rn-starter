@@ -1,15 +1,16 @@
 {
   "expo": {
-    "name": "wilo-app",
-    "slug": "wilo-app",
+    "name": "Noctra RN Starter",
+    "slug": "noctra-rn-starter",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "wiloapp",
+    "scheme": "noctra-rn-template",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.noctrarnstarter"
     },
     "android": {
       "adaptiveIcon": {
@@ -19,14 +20,17 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.anonymous.noctrarnstarter"
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "bundler": "metro"
     },
     "plugins": [
       "expo-router",
+      "expo-localization",
       [
         "expo-splash-screen",
         {
