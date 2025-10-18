@@ -6,7 +6,7 @@ import en from "@/src/core/translations/en.json";
 import es from "@/src/core/translations/es.json";
 
 const locales = Localization.getLocales();
-const deviceLanguage = locales[0]?.languageCode || "en"; // obtiene "es" o "en"
+const deviceLanguage = locales[0]?.languageCode || "en";
 
 i18n.use(initReactI18next).init({
   lng: deviceLanguage,
