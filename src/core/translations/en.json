@@ -5,7 +5,7 @@
   },
   "auth": {
     "login": "Sign In",
-    "logingIn": "Signing in...",
+    "signOut": "Sign Out",
     "signup": "Create Account",
     "email": "Email",
     "password": "Password",
@@ -16,7 +16,6 @@
     "emailAndPasswordError": "Please enter your email and password.",
     "noAccount": "Don’t have an account?",
     "alreadyHaveAccount": "Already have an account?",
-    "signingUp": "Creating...",
     "signUpError": "Could not create account."
   },
   "general": {
