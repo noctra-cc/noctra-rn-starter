@@ -1,7 +1,8 @@
+import { Text } from "@/src/core/components/ui";
 import { useThemeStore } from "@/src/core/stores/useThemeStore";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Image, Text, View } from "react-native";
+import { Image, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemeToggle } from "../theme/ThemeToggle";
 
@@ -30,10 +31,10 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
           resizeMode="contain"
           className="w-28 h-28 mb-4"
         />
-        <Text className={`text-3xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>
-          My App
+        <Text variant="default" weight="bold" size="3xl">
+          {t("brand.name")}
         </Text>
-        <Text className={`mt-2 text-center ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+        <Text variant="muted" weight="regular" size="lg">
           {t("brand.slogan")}
         </Text>
       </View>

@@ -1,9 +1,10 @@
 import AuthLayout from "@/src/core/components/layout/AuthLayout";
+import { Button, Input, Text } from "@/src/core/components/ui";
 import { useAuth } from "@/src/features/auth/hooks/useAuth";
-import { router } from "expo-router";
+import { Link, router } from "expo-router";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, View } from "react-native";
 
 export default function SignInScreen() {
   const { t } = useTranslation();
@@ -29,11 +30,10 @@ export default function SignInScreen() {
     <AuthLayout>
       <View className="justify-center gap-4">
         <View>
-          <Text className="text-gray-700 mb-2 font-semibold">
-            {t("auth.email")}
-          </Text>
-          <TextInput
-            className="border border-gray-300 rounded-xl px-4 py-3 text-gray-900"
+          <Text variant="muted">{t("auth.email")}</Text>
+          <Input
+            size="lg"
+            disabled={loading}
             placeholder="mail@example.com"
             keyboardType="email-address"
             autoCapitalize="none"
@@ -43,11 +43,10 @@ export default function SignInScreen() {
         </View>
 
         <View>
-          <Text className="text-gray-700 mb-2 font-semibold">
-            {t("auth.password")}
-          </Text>
-          <TextInput
-            className="border border-gray-300 rounded-xl px-4 py-3 text-gray-900"
+          <Text variant="muted">{t("auth.password")}</Text>
+          <Input
+            size="lg"
+            disabled={loading}
             placeholder="••••••••"
             secureTextEntry
             value={password}
@@ -55,26 +54,20 @@ export default function SignInScreen() {
           />
         </View>
 
-        <TouchableOpacity
+        <Button
+          size="lg"
+          label={t("auth.login")}
+          loading={loading}
           onPress={handleSignIn}
-          disabled={loading}
-          className={`mt-6 rounded-xl py-3 ${
-            loading ? "bg-gray-400" : "bg-blue-600"
-          }`}
-        >
-          <Text className="text-center text-white font-semibold text-lg">
-            {loading ? t("auth.logingIn") : t("auth.login")}
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => router.push("/(auth)/signup")}
-          className="mt-4"
-        >
-          <Text className="text-center text-blue-600">
-            {t("auth.noAccount")}
-          </Text>
-        </TouchableOpacity>
+        />
+        <Link asChild href={"/(auth)/signup"}>
+          <Button
+            variant="ghost"
+            size="lg"
+            label={t("auth.noAccount")}
+            disabled={loading}
+          />
+        </Link>
       </View>
     </AuthLayout>
   );
