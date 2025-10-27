@@ -65,7 +65,7 @@ const button = tv({
 
 type ButtonVariants = VariantProps<typeof button>;
 
-// ✅ Override disabled manually (omit it from PressableProps)
+// Override disabled manually (omit it from PressableProps)
 interface ButtonProps
   extends Omit<PressableProps, "disabled">,
     Omit<ButtonVariants, "disabled"> {
@@ -75,6 +75,7 @@ interface ButtonProps
   disabled?: boolean;
 }
 
+// eslint-disable-next-line react/display-name
 export const Button = React.forwardRef<View, ButtonProps>(
   (
     {

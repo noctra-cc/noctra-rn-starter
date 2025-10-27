@@ -23,14 +23,14 @@ export const useAuthStore = create<AuthState>((set) => ({
       set({ session: null, loading: false });
     }
 
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      set({ session });
-    });
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        set({ session });
+      }
+    );
   },
 
   signOut: async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) console.error("Sign out error:", error.message);
-    set({ session: null });
+    set({ session: null, loading: false });
   },
 }));

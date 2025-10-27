@@ -1,23 +1,34 @@
 import AuthLayout from "@/src/core/components/layout/AuthLayout";
 import { Button, Input, Text } from "@/src/core/components/ui";
 import { useAuth } from "@/src/features/auth/hooks/useAuth";
+import { signInSchema, type SignInForm } from "@/src/features/auth/typings";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, router } from "expo-router";
-import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Alert, View } from "react-native";
 
 export default function SignInScreen() {
   const { t } = useTranslation();
   const { signIn, loading } = useAuth();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const handleSignIn = async () => {
-    if (!email || !password) {
-      Alert.alert(t("general.error"), t("auth.emailAndPasswordError"));
-      return;
-    }
+  const {
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    watch,
+  } = useForm<SignInForm>({
+    resolver: zodResolver(signInSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
+  const email = watch("email");
+  const password = watch("password");
+
+  const onSubmit = async (data: SignInForm) => {
     try {
       await signIn(email, password);
       router.replace("/(tabs)");
@@ -38,8 +49,13 @@ export default function SignInScreen() {
             keyboardType="email-address"
             autoCapitalize="none"
             value={email}
-            onChangeText={setEmail}
+            onChangeText={(text) => setValue("email", text)}
           />
+          {errors.email && (
+            <Text className="text-red-500 text-sm mt-1">
+              {errors.email.message}
+            </Text>
+          )}
         </View>
 
         <View>
@@ -50,15 +66,20 @@ export default function SignInScreen() {
             placeholder="••••••••"
             secureTextEntry
             value={password}
-            onChangeText={setPassword}
+            onChangeText={(text) => setValue("password", text)}
           />
+          {errors.password && (
+            <Text className="text-red-500 text-sm mt-1">
+              {errors.password.message}
+            </Text>
+          )}
         </View>
 
         <Button
           size="lg"
           label={t("auth.login")}
           loading={loading}
-          onPress={handleSignIn}
+          onPress={handleSubmit(onSubmit)}
         />
         <Link asChild href={"/(auth)/signup"}>
           <Button
